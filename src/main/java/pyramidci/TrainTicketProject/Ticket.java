@@ -17,7 +17,21 @@ public class Ticket {
 	
 	private String generatePNR()
 	{
-		
+
+		setCounter(99);
+		char source = train.getSource().charAt(0);
+		char destination = train.getDestination().charAt(0);
+		travelDate = getTravelDate();
+
+		StringBuffer str = new StringBuffer();
+		str.append(source);
+		str.append(destination);
+		str.append("_");
+		str.append(travelDate.toString());
+		str.append("_");
+		str.append(getCounter());
+
+		return str.toString();
 	}
 	
 	private double calcPassengerFare(Passenger passenger)
@@ -42,6 +56,8 @@ public class Ticket {
 
 	//	Getters and Setters below
 	public int getCounter() {
+		counter += 1;
+		setCounter(counter);
 		return counter;
 	}
 
