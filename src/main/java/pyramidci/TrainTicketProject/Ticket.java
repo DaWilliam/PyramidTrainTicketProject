@@ -87,31 +87,22 @@ public class Ticket {
 							+p.getKey().getGender()+"\t"
 							+p.getValue());
 		}
-		ticketGen.append("\nTotal Price: "+ calcTotalTicketPrice());
+		ticketGen.append("\nTotal Price: "+ calculateTotalTicketPrice());
+		return ticketGen;
 	}
 	
 	public void writeTicket()
 	{
 		//	Writes initial values
-		String ticketText = "PNR\t\t: " + generatePNR() + "\n"
-				+ "Train no\t: " + train.getTrainNo() + "\n"
-				+ "Train Name\t: " + train.getTrainName() + "\n"
-				+ "From\t: " + train.getSource() + "\n"
-				+ "To\t: " + train.getDestination() + "\n"
-				+ "Travel Date\t: " +  travelDate.toString() + "\n\n"
-				+ "Passengers:"  + "\n"
-				+ "Name\t\tAge\t\tGender\t\tFare" + "\n";
-		
-		//	Writes list of passengers
-		for(Map.Entry<Passenger, Integer> p : passengers.entrySet())
-		{
-			ticketText += p.getKey().getName() + "\t\t" 
-						+ p.getKey().getAge() + "\t\t"
-						+ p.getKey().getGender() + "\t\t"
-						+ p.getValue() + "\n";
-		}
-		
+		StringBuilder sb = generateTicket();
+			
 		//	TODO Write text to file
+		try {
+			PrintWriter pw = new PrintWriter("ticket" + generatePNR() + ".txt");			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	//	Getters and Setters below
