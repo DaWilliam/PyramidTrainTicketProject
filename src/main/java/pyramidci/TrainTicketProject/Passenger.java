@@ -1,6 +1,6 @@
 package pyramidci.TrainTicketProject;
 
-public class Passenger {
+public class Passenger implements Comparable<Passenger>{
     private String name;
     private int age;
     private char gender;
@@ -34,4 +34,9 @@ public class Passenger {
     public void setGender(char gender) {
         this.gender = gender;
     }
+
+	public int compareTo(Passenger o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

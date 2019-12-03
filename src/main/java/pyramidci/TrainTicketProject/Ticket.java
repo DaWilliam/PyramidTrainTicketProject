@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 import java.io.*;
+import java.nio.file.Files;
 
 public class Ticket {
 	int counter;
@@ -12,10 +13,12 @@ public class Ticket {
 	Train train;
 	TreeMap<Passenger, Integer> passengers;
 	StringBuilder ticketGen;
+	
 	public Ticket(Date date, Train train)
 	{
-	travelDate = date;
-	this.train = train;
+		passengers = new TreeMap<Passenger, Integer>();
+		travelDate = date;
+		this.train = train;
 	}
 	
 	private String generatePNR()
@@ -68,7 +71,8 @@ public class Ticket {
 	public void addPassenger(String name, int age, char gender)
 	{
 		Passenger passenger = new Passenger(name, age, gender);
-		passengers.put(passenger, (int)calcPassengerFare(passenger));
+		Integer price = (int)calcPassengerFare(passenger);
+		passengers.put(passenger, price);
 	}
 	
 	private StringBuilder generateTicket()
@@ -80,8 +84,8 @@ public class Ticket {
 						+"\nFrom\t: "+train.getSource()
 						+"\nTo\t: "+train.getDestination()
 						+"\nTravel Date\t : "+travelDate
-						+"\n\nPassengers :"
-						+"Name\tAge\tGender\tFare");
+						+"\n\nPassengers :\n"
+						+"Name\tAge\tGender\tFare\n");
 		for(Map.Entry<Passenger, Integer> p:passengers.entrySet()) {
 			ticketGen.append(p.getKey().getName()+"\t"
 							+p.getKey().getAge()+"\t"
@@ -99,8 +103,14 @@ public class Ticket {
 			
 		//	TODO Write text to file
 		try {
-			PrintWriter pw = new PrintWriter("ticket" + generatePNR() + ".txt");			
+			new File("Ticket.txt").createNewFile();
+			BufferedWriter bw = new BufferedWriter(new FileWriter("Ticket.txt"));
+			bw.write(sb.toString());
+			bw.close();
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
