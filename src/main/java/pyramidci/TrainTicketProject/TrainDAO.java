@@ -10,6 +10,9 @@ public class TrainDAO {
 	private String PASSWORD = "hr";
 	DBConnection dbc = new DBConnection();
 	Connection con = dbc.getConnection(DB_URL, USERNAME, PASSWORD);
+
+
+	// METHOD TO FIND TRAIN
 	public Train findTrain(int trainNo)
 	{
 		PreparedStatement stmt;

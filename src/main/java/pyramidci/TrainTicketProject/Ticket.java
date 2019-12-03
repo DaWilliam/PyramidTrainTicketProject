@@ -14,7 +14,8 @@ public class Ticket {
 	StringBuilder ticketGen;
 	public Ticket(Date date, Train train)
 	{
-	
+	travelDate = date;
+	this.train = train;
 	}
 	
 	private String generatePNR()
