@@ -80,6 +80,7 @@ public class TicketApplication {
 
         nada.addPassenger(name, age,gender);
 
+        nada.writeTicket();
 
 
     }

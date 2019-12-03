@@ -8,7 +8,7 @@ public class Train {
     private double ticketPrice;
 
 
-    public Train(int trainNo, Date travelDate, String trainName, String source, String destination,
+    public Train(int trainNo,  String trainName, String source, String destination,
 			double ticketPrice) {
 		super();
 		this.trainNo = trainNo;
