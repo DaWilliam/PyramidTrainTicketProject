@@ -11,7 +11,7 @@ public class Ticket {
 	Date travelDate;
 	Train train;
 	TreeMap<Passenger, Integer> passengers;
-	
+	StringBuilder ticketGen;
 	public Ticket(Date date, Train train)
 	{
 	
@@ -72,7 +72,22 @@ public class Ticket {
 	
 	private StringBuilder generateTicket()
 	{
-		
+		ticketGen = new StringBuilder();
+		ticketGen.append("PNR\t: "+pnr
+						+"\nTrain No\t: "+train.getTrainNo()
+						+"\nTrain Name\t: "+train.getTrainName()
+						+"\nFrom\t: "+train.getSource()
+						+"\nTo\t: "+train.getDestination()
+						+"\nTravel Date\t : "+travelDate
+						+"\n\nPassengers :"
+						+"Name\tAge\tGender\tFare");
+		for(Map.Entry<Passenger, Integer> p:passengers.entrySet()) {
+			ticketGen.append(p.getKey().getName()+"\t"
+							+p.getKey().getAge()+"\t"
+							+p.getKey().getGender()+"\t"
+							+p.getValue());
+		}
+		ticketGen.append("\nTotal Price: "+ calcTotalTicketPrice());
 	}
 	
 	public void writeTicket()
