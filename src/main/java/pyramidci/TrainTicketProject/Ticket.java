@@ -149,11 +149,11 @@ public class Ticket {
 		this.train = train;
 	}
 
-	public TreeMap<Integer, Integer> getPassengers() {
+	public TreeMap<Passenger, Integer> getPassengers() {
 		return passengers;
 	}
 
-	public void setPassengers(TreeMap<Integer, Integer> passengers) {
+	public void setPassengers(TreeMap<Passenger, Integer> passengers) {
 		this.passengers = passengers;
 	}
 	
