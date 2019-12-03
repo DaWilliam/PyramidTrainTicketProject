@@ -1,20 +1,18 @@
 package pyramidci.TrainTicketProject;
-import java.util.*;
-
 public class Train {
     private int trainNo;
-    private Date travelDate;
+
     private String trainName;
     private String source;
     private String destination;
     private double ticketPrice;
 
 
-    public Train(int trainNo, Date travelDate, String trainName, String source, String destination,
+    public Train(int trainNo, String trainName, String source, String destination,
 			double ticketPrice) {
 		super();
 		this.trainNo = trainNo;
-		this.travelDate = travelDate;
+
 		this.trainName = trainName;
 		this.source = source;
 		this.destination = destination;
@@ -61,13 +59,6 @@ public class Train {
         this.ticketPrice = ticketPrice;
     }
 
-	public Date getTravelDate() {
-		return travelDate;
-	}
 
-	public void setTravelDate(Date travelDate) {
-		this.travelDate = travelDate;
-	}
-    
     
 }
