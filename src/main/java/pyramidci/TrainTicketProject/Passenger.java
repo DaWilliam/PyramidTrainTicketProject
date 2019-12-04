@@ -36,18 +36,36 @@ public class Passenger implements Comparable<Passenger>{
     }
 
 	public int compareTo(Passenger o) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		System.out.println("Comparing Passengers " + (this.name.length() - o.getName().length()));
+		if(this.equals(o))
+			return 0;
+		else
+			return -1;				
 	}
+	
 	@Override
 	public int hashCode()
 	{
-	    return this.hashCode();
+		System.out.println("HashCoding Passengers");
+		return this.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object o)
 	{
-	    return this.equals(o);
+		
+		boolean bName = this.name.equals(((Passenger)o).getName());
+		boolean bAge = this.age == ((Passenger)o).getAge();
+		boolean bGender = this.gender == ((Passenger)o).getGender();
+		//System.out.println("Equaling Passengers: " + (bName && bAge && bGender));
+	    return bName && bAge && bGender;
 	}
+
+	@Override
+	public String toString() {
+		//return "Passenger [name=" + name + ", age=" + age + ", gender=" + gender + "]";
+	}
+	
+	
 }

@@ -69,7 +69,9 @@ public class TicketApplication {
             System.out.println("Enter Gender (M/F)");
             gender = Character.toUpperCase(sc.next().charAt(0));
             		
+            
             nada.addPassenger(name,age,gender);
+            System.out.println("length: " + nada.passengers.size());
         }
         for(Map.Entry<Passenger, Integer> p:nada.getPassengers().entrySet()) {
         	System.out.println(p.getKey().getName());

@@ -7,7 +7,7 @@ public class TrainDAO {
 	private String DRIVER_NAME;
 	private String DB_URL = "jdbc:oracle:thin:@localhost:1521:orcl";
 	private String USERNAME = "hr";
-	private String PASSWORD = "hr";
+	private String PASSWORD = "password";
 	DBConnection dbc = new DBConnection();
 	Connection con = dbc.getConnection(DB_URL, USERNAME, PASSWORD);
 
