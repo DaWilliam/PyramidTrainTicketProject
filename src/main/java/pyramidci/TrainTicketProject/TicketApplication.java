@@ -25,39 +25,39 @@ public class TicketApplication {
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-
-        Date objdate = new Date();
         Calendar cal = Calendar.getInstance();
-       // cal.setTime(objdate);
-
+        Calendar cal2 = Calendar.getInstance();
         //Get travel date
 
-        System.out.println("Enter travel Date");
+        System.out.println("Enter travel Date (mm/dd/yyyy)");
         String str = sc.next();
         Date date = new Date();
         try {
             date = sdf.parse(str);
-            Calendar cal2 = Calendar.getInstance();
             cal2.setTime(date);
-
-            while(date.before(objdate))
+            
+            while(cal2.before(cal))
             {
                 System.out.println("Travel Date is before current date");
                 System.out.println("Enter travel Date");
                 str = sc.next();
                 date = sdf.parse(str);
+                cal2.setTime(date);
             }
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
 
         //Get number of passengers and their details
         System.out.println("Enter the number of passengers");
         int numOfPass = sc.nextInt();
         String name ="";
         int age = 0;
-        char gender =  0;
+        char gender = 0;
+        Train runaway;
+        TrainDAO running = new TrainDAO();
+        runaway = running.findTrain(trainNo);
+        Ticket nada = new Ticket(cal2.getTime(), runaway);
         for(int i =0; i<numOfPass; i++)
         {
             System.out.println("Enter Passenger Name");
@@ -67,18 +67,13 @@ public class TicketApplication {
             age = sc.nextInt();
 
             System.out.println("Enter Gender (M/F)");
-            gender = sc.next().charAt(0);
+            gender = Character.toUpperCase(sc.next().charAt(0));
+            		
+            nada.addPassenger(name,age,gender);
         }
-        Train runaway;
-        TrainDAO running = new TrainDAO();
-        runaway = running.findTrain(trainNo);
-
-        Ticket nada = new Ticket(date, runaway);
-
-        nada.addPassenger(name, age,gender);
-
+        for(Map.Entry<Passenger, Integer> p:nada.getPassengers().entrySet()) {
+        	System.out.println(p.getKey().getName());
+        }
         nada.writeTicket();
-
-
     }
 }
