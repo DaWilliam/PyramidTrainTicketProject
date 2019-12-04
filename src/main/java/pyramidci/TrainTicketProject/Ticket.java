@@ -33,7 +33,8 @@ public class Ticket {
 		str.append(source);
 		str.append(destination);
 		str.append("_");
-		str.append(travelDate.toString());
+		//str.append(travelDate.toString());
+
 		str.append("_");
 		str.append(getCounter());
 
@@ -78,7 +79,7 @@ public class Ticket {
 	private StringBuilder generateTicket()
 	{
 		ticketGen = new StringBuilder();
-		ticketGen.append("PNR\t: "+pnr
+		ticketGen.append("PNR\t: "+ generatePNR()
 						+"\nTrain No\t: "+train.getTrainNo()
 						+"\nTrain Name\t: "+train.getTrainName()
 						+"\nFrom\t: "+train.getSource()
@@ -100,7 +101,7 @@ public class Ticket {
 	{
 		//	Writes initial values
 		StringBuilder sb = generateTicket();
-			
+				
 		//	TODO Write text to file
 		try {
 			new File("Ticket.txt").createNewFile();
