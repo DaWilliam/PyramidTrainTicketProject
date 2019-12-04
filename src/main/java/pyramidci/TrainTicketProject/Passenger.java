@@ -39,4 +39,15 @@ public class Passenger implements Comparable<Passenger>{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	@Override
+	public int hashCode()
+	{
+	    return this.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+	    return this.equals(o);
+	}
 }

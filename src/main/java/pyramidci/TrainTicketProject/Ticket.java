@@ -1,5 +1,6 @@
 package pyramidci.TrainTicketProject;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
@@ -28,13 +29,15 @@ public class Ticket {
 		char source = train.getSource().charAt(0);
 		char destination = train.getDestination().charAt(0);
 		travelDate = getTravelDate();
-
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(travelDate);
 		StringBuffer str = new StringBuffer();
 		str.append(source);
 		str.append(destination);
 		str.append("_");
-		//str.append(travelDate.toString());
-
+		str.append(cal.get(cal.YEAR));
+		str.append(cal.get(cal.MONTH)+1);
+		str.append(cal.get(cal.DATE));
 		str.append("_");
 		str.append(getCounter());
 
@@ -82,9 +85,9 @@ public class Ticket {
 		ticketGen.append("PNR\t: "+ generatePNR()
 						+"\nTrain No\t: "+train.getTrainNo()
 						+"\nTrain Name\t: "+train.getTrainName()
-						+"\nFrom\t: "+train.getSource()
-						+"\nTo\t: "+train.getDestination()
-						+"\nTravel Date\t : "+travelDate
+						+"\nFrom\t\t: "+train.getSource()
+						+"\nTo\t\t: "+train.getDestination()
+						+"\nTravel Date\t: "+travelDate
 						+"\n\nPassengers :\n"
 						+"Name\tAge\tGender\tFare\n");
 		for(Map.Entry<Passenger, Integer> p:passengers.entrySet()) {
@@ -104,8 +107,9 @@ public class Ticket {
 				
 		//	TODO Write text to file
 		try {
-			new File("Ticket.txt").createNewFile();
-			BufferedWriter bw = new BufferedWriter(new FileWriter("Ticket.txt"));
+			File file = new File(generatePNR()+".txt");
+			file.createNewFile();
+			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 			bw.write(sb.toString());
 			bw.close();
 		} catch (FileNotFoundException e) {
