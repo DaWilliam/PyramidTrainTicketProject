@@ -37,7 +37,7 @@ public class Passenger implements Comparable<Passenger>{
 
 	public int compareTo(Passenger o) {
 		
-		System.out.println("Comparing Passengers " + (this.name.length() - o.getName().length()));
+		//System.out.println("Comparing Passengers " + (this.name.length() - o.getName().length()));
 		if(this.equals(o))
 			return 0;
 		else
@@ -47,7 +47,7 @@ public class Passenger implements Comparable<Passenger>{
 	@Override
 	public int hashCode()
 	{
-		System.out.println("HashCoding Passengers");
+		//System.out.println("HashCoding Passengers");
 		return this.hashCode();
 	}
 
@@ -62,10 +62,11 @@ public class Passenger implements Comparable<Passenger>{
 	    return bName && bAge && bGender;
 	}
 
+	/*
 	@Override
 	public String toString() {
 		//return "Passenger [name=" + name + ", age=" + age + ", gender=" + gender + "]";
 	}
-	
+	*/
 	
 }
